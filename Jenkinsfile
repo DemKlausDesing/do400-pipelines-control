@@ -1,20 +1,21 @@
-node('nodejs') {
-    stage('Checkout') {
-        // URL anpassen!!!
-        git branch: 'main',
-            url: 'https://github.com/DemKlausDesing/do400-pipelines-control'
-    }
+pipeline {
+	agent {
+		node {
+			label 'nodejs'
+		}
+	}
 
-    // Mega-hammer-hart
-    stage('Mega') {
-        sh 'echo Mega ...'
-    }
-    
-    stage('Backend Tests') {
-        sh 'node ./backend/test.js'
-    }
-    
-    stage('Frontend Tests') {
-        sh 'node ./frontend/test.js'
-    }
+	stages {
+		stage('Backend Tests') {
+			steps {
+				sh 'node ./backend/test.js'
+			}
+		}
+
+		stage('Frontend Tests') {
+			steps {
+				sh 'node ./frontend/test.js'
+			}
+		}
+	}
 }
