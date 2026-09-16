@@ -1,5 +1,6 @@
 node('nodejs') {
     stage('Checkout') {
+        // URL anpassen!!!
         git branch: 'main',
             url: 'https://github.com/DemKlausDesing/do400-pipelines-control'
     }
